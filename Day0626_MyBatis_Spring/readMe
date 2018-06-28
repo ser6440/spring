@@ -1,0 +1,55 @@
+1. Maven 설정
+   Spring : core, context, jdbc
+   Mybatis : MyBatis, Mybatis-Spring
+   oracle : ojdbc
+   
+2. 패키지 만들기
+   dao : 작성할 Dao의 interface
+   dao.mapper : 작성할 Dao에서 사용할 sql을 포함하는 mapper.xml
+                   1) ***** mapper의 namespace는 매퍼와 짝궁 인터페이스 경로*****
+                   2) mapper안에 sql들의 id는 인터페이스의 메서드 이름과 일치해야 한다.
+                      인터페이스의 메서드가 호출되면 일치하는 이름의 sql을 이용해서 실행한다.
+
+3. spring 컨테이너 설정파일 작성
+   dataSource : db접속정보
+   sqlSessionFactory : mybatis를 이용한 DAO작성을 위해 bean 등록
+   boardDao : mybatis-spring에서 제공하는 MapperFactoryBean을 이용한
+                 정형화된 dao를 생성(개발자가 dao 인터페이스를 구현하지 않고도 메서드 사용가능)                      
+                      
+ 동적쿼리 : 상황에 맞게 특정한 sql을 만들어 낼 수 있는 기능을 제공 
+ ex) insert할 때 이름이 없다면 '이름없음' 이라고 insert하기 
+ 1. <choose>  조건에 따라 작성할 sql문을 선택할 때 사용
+ 2. <sql> 반복되는 sql을 따로 작성해서 불러다 사용하기 위해
+    <include> 를 이용해서 <sql>에 작성된 sql을 불러다가 사용
+ 3. <if> 특정 조건일 때 실행할 문장을 작성  
+
+제목검색, 이름검색, 제목+이름검색, 내용검색
+searchBoard()
+검색어,   검색종류
+String keyword
+
+검색 타입 type, 각각의 검색 타입별로, keyword를 해당 파라미터로 넣어준다.
+0. 검색하지 않음, 전체선택
+1. 제목검색	title
+2. 이름검색	name
+3. 제목+이름검색	title, name
+4. 내용검색	content
+
+1. select * from board where 1=0 or title = 'title'
+2. select * from board where 1=0 or name = 'name'
+3. select * from board where 1=0 or title = "title or name = 'name'
+4. select * from board where 1=0 or content = 'content'
+5. select * from board where 1=0 or 1=1
+
+title like '%title%'	'title'이라는 문자열을 포함하면 모두 검색	
+특정한 문자열을 포함하면 전부검색 %검색어%
+
+MyBatis Mapper내에서 #{ }를 사용하는 경우
+#{TITLE}	>>> 문자열일 경우 '제목'
+#{NUM}	>>> 숫자일 경우 5
+
+
+
+
+
+
