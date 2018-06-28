@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.BoardDao">	<!-- mapper와 짝꿍될 interface경로 -->
+	<insert id="insertBoard" parameterType="map">	<!-- 인터페이스에는 실행할 sql id와 동일한 이름의 메서드 선언 -->
+		insert
+			into Board
+		values(#{NUM}, #{TITLE}, #{NAME}, #{PASS}, #{EMAIL}, #{CONTENT}, #{READCOUNT}, sysdate)
+	</insert>
+	
+	<update id="updateBoard" parameterType="map">
+		update Board
+			set     title = #{TITLE},
+			       name = #{NAME},
+			        pass = #{PASS},
+			       email = #{EMAIL},
+			    content = #{CONTENT},
+			 readcount = #{READCOUNT}
+		where   num   = #{NUM}
+	</update>
+	<delete id="deleteBoard" parameterType="int">
+		delete
+			from Board
+		where num = #{NUM}
+	</delete>
+	<select id="selectOne" parameterType="int" resultType="map">
+		select * from 
+			Board
+		where num = #{NUM}
+	</select>
+	<select id="selectAll" resultType="map">
+		select * from Board
+	</select>
+</mapper>
