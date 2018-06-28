@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="connProvider" class="di04.ConnectionProvider"></bean>
+	<!-- 의존성 주입방법: setter,constructor
+		의존성 대상 참조변수 : provider
+		<property>의 name은 setter의 이름 set떼고 앞글자만 소문자로 바꾼이름
+	 -->	
+<!-- 	<bean id="studentDao" class="di04.StudentDao">
+		<property name="connectionProvider" ref="connProvider"></property>
+	</bean> -->
+	
+	<bean id="studentDao" class="di04.StudentDao">
+		<constructor-arg ref="connProvider"></constructor-arg>
+	</bean>
+</beans>
