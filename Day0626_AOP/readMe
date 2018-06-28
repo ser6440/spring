@@ -1,0 +1,50 @@
+ AOP (Aspect Oriented Programming)
+ 구현하고자 하는 기능을 핵심 관심사항과 공통관심사항으로 분리하여 작성하자
+ - 특정 기능을 실행할 때 부가적인 기능을 같이 실행하고 싶을 때 사용
+ ex) Service의 메서드를 실행할 때, 기록을 남겨라 ( log남기기 등 )
+ 
+ 1. 해야할일
+ 기능구현 : 핵심기능을 구현 - bean으로 등록
+              공통기능을 구현 - bean으로 등록, aop적용하기
+ AOP 적용 : 핵심기능을 실행할 때, 공통기능이 실행될 수 있도록 설정
+ 
+ AOP를 이해하기 위한 프록시패턴 이해
+ 코드의 중복을 막기 위해서 프록시 객체를 이용한다.
+ 프록시 객체 : 핵심관심사항 기능을 대신 불러주는 객체      
+ 
+ Spring Framework에서 AOP 적용하기
+ Spring : core, context, aop
+ aspectj : aspectjrt, aspectjweaver
+ 
+ <advice 종류>
+ before : taget 수행 전 실행될 코드 
+ 
+ after-returning : 정상종료 후 실행
+ after-throwing : 비정상종료 후 실행
+ after : target 정상종료/비정상종료 여부에 상관없이 실행, 
+         단, after-returning, after-throwing과는 실행 순서에 연관성이 없다.
+         따라서, after-returning, after-throwing과 순서에 계연성이 있는 프로그래밍을 하면 안된다.
+         
+ around : target 앞 뒤로 실행 될 코드를 정의
+
+aop 적용시키기
+ - 핵심기능 구현을 위한 인터페이스 작성
+ - 핵심기능이 구현될 클래스(Target)를 작성, Target은 인터페이스를 구현(implements)한다.
+ - advice 작성 (Aspect)
+ - 스프링 설정파일 작성
+   : 타겟 bean으로 등록
+   : advice 모듈 baen 등록
+   : aop 설정(joinpoint 설정 및 pointcut)
+
+타겟 반환 값 및 예외 객체 받아서 처리하기
+   
+ 정상종료 되었을 때 : 반환 값 >> after-returning
+ 비정상 종료 되었을 때 : 예외객체 >> after-throwing
+ 
+ 
+ 
+ 
+ 
+ 
+            
+            
