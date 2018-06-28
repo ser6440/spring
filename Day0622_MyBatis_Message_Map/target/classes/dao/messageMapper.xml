@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.messageMapper">
+	<insert id="insertMessage" parameterType="map">
+		insert into message 
+		     values(message_seq.nextval
+		            ,#{PASSWORD}
+		            ,#{NAME}
+		            ,#{MESSAGE})
+	</insert>
+	<update id="updateMessage" parameterType="map">
+		update message
+		   set  password = #{PASSWORD}
+		       ,name = #{NAME}
+		       ,message = #{MESSAGE}
+		 where id = #{ID}
+	</update>
+	<delete id="deleteMessgae" parameterType="int">
+		delete 
+		  from message
+		 where id = #{id}
+	</delete>
+	<select id="selectOne" parameterType="int" resultType="map">
+		select *
+		  from message
+		 where id = #{id}
+	</select>
+	<select id="selectAll" resultType="map">
+		select * from message
+	</select>
+</mapper>
