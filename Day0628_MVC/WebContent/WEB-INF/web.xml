@@ -11,17 +11,21 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
   
-  
+  <!-- contextLoaderListener의 설정파일 기본경로 변경 -->
+  <context-param>
+  		<param-name>contextConfigLocation</param-name>
+  		<param-value></param-value>
+  </context-param>
   
   
   <!-- The front controller of this Spring Web application, responsible for handling all application requests -->
 	<servlet>
 		<servlet-name>dispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		
+		<!-- app-servlet의 설정파일 기본경로 변경 -->
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/spring/servlet-context.xml</param-value>
+			<param-value>/WEB-INF/spring/root-context.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
