@@ -5,7 +5,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	<!-- MVC 구현에 필요한 객체들을 bean으로 등록해서 사용 -->
-	<!-- controller, handlermapping, viewResolver -->
+	<!-- controller (실제 로직을 처리 하기 때ㅔ문에 springFramework가 만들어줄수없음 bean으로 만들어서 등록, 
+	      handlermapping, viewResolver (기본객체가 있으므로 만들어주지 않아도 된다. 연산의 결과로 만들어지는것)
+	 -->
 	<context:component-scan base-package="controller"></context:component-scan>
-
 </beans>
