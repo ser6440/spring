@@ -1,0 +1,6 @@
+Message MVC 요청 정리
+처리해야할 요청
+	/write 메시지작성 
+	/messageList 화면요청
+	/pwCheck 비밀번호 확인
+
