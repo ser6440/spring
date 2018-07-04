@@ -4,8 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import dao.BoardDao;
 import dao.MemberDao;
+import model.Board;
 import model.Member;
 
 @Service
@@ -13,6 +16,9 @@ public class MemberServiceImp implements MemberService {
 	
 	@Autowired
 	private MemberDao memberDao;
+	
+	@Autowired
+	private BoardDao boardDao;
 	
 	@Override
 	public List<Member> getAllMembers() {
@@ -42,8 +48,19 @@ public class MemberServiceImp implements MemberService {
 		return memberDao.selectOne(id);
 	}
 
+	@Transactional
 	@Override
 	public boolean join(Member member) {
+		
+		Board board = new Board();
+		board.setTitle(member.getName() + " 가입인사입니다.");
+		board.setName(member.getId());
+		board.setPass(member.getPw());
+		board.setEmail(member.getEmail());
+		board.setContent("반갑습니다. 오늘 가입했습니다. " + member.getName() + " 입니다.");
+		
+		boardDao.insertBoard(board);
+		
 		int rowCount = memberDao.insertMember(member);
 		if(rowCount >0) {
 			return true;

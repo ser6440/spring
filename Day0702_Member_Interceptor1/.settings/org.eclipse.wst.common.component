@@ -4,6 +4,6 @@
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <property name="java-output-path" value="/Day0702_Member_Interceptor/build/classes"/>
-        <property name="context-root" value="Day0702_Member_Interceptor1"/>
+        <property name="context-root" value="Day0702_Member_Interceptor"/>
     </wb-module>
 </project-modules>
